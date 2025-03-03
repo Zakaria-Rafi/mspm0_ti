@@ -1,7 +1,7 @@
 ******************************************************************************
             TI ARM Clang Linker PC v4.0.1                      
 ******************************************************************************
->> Linked Mon Mar  3 12:26:43 2025
+>> Linked Mon Mar  3 20:09:51 2025
 
 OUTPUT FILE NAME:   <Blink.out>
 ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 000001e5
@@ -37,7 +37,7 @@ section   page    origin      length       input sections
                   00000000    000000c0     startup_mspm0g350x_ticlang.o (.intvecs)
 
 .text      0    000000c0    00000170     
-                  000000c0    000000a4     empty.o (.text.main)
+                  000000c0    000000a4     Blink.o (.text.main)
                   00000164    00000040     ti_msp_dl_config.o (.text.SYSCFG_DL_SYSCTL_init)
                   000001a4    00000020     ti_msp_dl_config.o (.text.SYSCFG_DL_GPIO_init)
                   000001c4    00000020     ti_msp_dl_config.o (.text.SYSCFG_DL_initPower)
@@ -73,7 +73,7 @@ MODULE SUMMARY
        ------                         ----   -------   -------
     .\
        startup_mspm0g350x_ticlang.o   6      192       0      
-       empty.o                        164    0         0      
+       Blink.o                        164    0         0      
        ti_msp_dl_config.o             144    0         0      
     +--+------------------------------+------+---------+---------+
        Total:                         314    192       0      

@@ -12,19 +12,19 @@ SHELL = cmd.exe
 	@echo 'Finished building: "$<"'
 	@echo ' '
 
-build-338889937: ../empty.syscfg
+build-1837383711: ../Blink.syscfg
 	@echo 'Building file: "$<"'
 	@echo 'Invoking: SysConfig'
-	"C:/ti/ccs2002/ccs/utils/sysconfig_1.22.0/sysconfig_cli.bat" --script "C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Blink/empty.syscfg" -o "." -s "C:/ti/mspm0_sdk_2_03_00_07/.metadata/product.json" -d "MSPM0G350X" -p "VQFN-32(RHB)" -r "Default" --context "system" --compiler ticlang
+	"C:/ti/ccs2002/ccs/utils/sysconfig_1.22.0/sysconfig_cli.bat" --script "C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Blink/Blink.syscfg" -o "." -s "C:/ti/mspm0_sdk_2_03_00_07/.metadata/product.json" -d "MSPM0G350X" -p "VQFN-32(RHB)" -r "Default" --context "system" --compiler ticlang
 	@echo 'Finished building: "$<"'
 	@echo ' '
 
-device_linker.cmd: build-338889937 ../empty.syscfg
-device.opt: build-338889937
-device.cmd.genlibs: build-338889937
-ti_msp_dl_config.c: build-338889937
-ti_msp_dl_config.h: build-338889937
-Event.dot: build-338889937
+device_linker.cmd: build-1837383711 ../Blink.syscfg
+device.opt: build-1837383711
+device.cmd.genlibs: build-1837383711
+ti_msp_dl_config.c: build-1837383711
+ti_msp_dl_config.h: build-1837383711
+Event.dot: build-1837383711
 
 %.o: ./%.c $(GEN_OPTS) | $(GEN_FILES) $(GEN_MISC_FILES)
 	@echo 'Building file: "$<"'
