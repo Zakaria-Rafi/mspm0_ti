@@ -10,17 +10,37 @@
  * Import the modules used in this configuration.
  */
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
 
 /**
  * Write custom configuration values to the imported modules.
  */
+const gate7  = system.clockTree["MFCLKGATE"];
+gate7.enable = true;
+
 SYSCTL.forceDefaultClkConfig = true;
-SYSCTL.peripheral.$assign    = "SYSCTL";
+SYSCTL.clockTreeEn           = true;
 
 const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";
 Board.peripheral.swdioPin.$assign = "PA19";
 
+UART1.$name             = "UART_0";
+UART1.uartClkSrc        = "MFCLK";
+UART1.enabledInterrupts = ["RX"];
+UART1.txPinConfig.$name = "ti_driverlib_gpio_GPIOPinGeneric0";
+UART1.rxPinConfig.$name = "ti_driverlib_gpio_GPIOPinGeneric1";
+
 const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
 ProjectConfig.migrationCondition = true;
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+UART1.peripheral.$suggestSolution       = "UART0";
+UART1.peripheral.rxPin.$suggestSolution = "PA1";
+UART1.peripheral.txPin.$suggestSolution = "PA0";
