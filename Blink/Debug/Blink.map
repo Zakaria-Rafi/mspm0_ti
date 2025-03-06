@@ -1,7 +1,7 @@
 ******************************************************************************
             TI ARM Clang Linker PC v4.0.1                      
 ******************************************************************************
->> Linked Mon Mar  3 20:09:51 2025
+>> Linked Wed Mar  5 21:34:05 2025
 
 OUTPUT FILE NAME:   <Blink.out>
 ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 000001e5

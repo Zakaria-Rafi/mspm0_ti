@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Serial_communication",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "Serial_communication",
+                "resourceId": "/Serial_communication"
+            }
+        },
+        {
+            "name": "Blink",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "Blink",
+                "resourceId": "/Blink"
+            }
+        }
+    ]
+}
