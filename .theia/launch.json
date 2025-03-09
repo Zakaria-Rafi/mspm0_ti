@@ -9,15 +9,6 @@
                 "name": "Serial_communication",
                 "resourceId": "/Serial_communication"
             }
-        },
-        {
-            "name": "Blink",
-            "type": "ccs-debug",
-            "request": "launch",
-            "projectInfo": {
-                "name": "Blink",
-                "resourceId": "/Blink"
-            }
         }
     ]
 }

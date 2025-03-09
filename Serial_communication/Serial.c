@@ -24,7 +24,7 @@ int main(void)
     while (1)
     {
         uart0_send_string("Hello Arduino!\n");  // Send the test message
-        delay_ms(10000);  // Delay 1000 ms (1 second)
+        delay_ms(1000);  // Delay 1000 ms (1 second)
         
         // Add more code if necessary to handle other logic
         
@@ -64,7 +64,6 @@ void UART_0_INST_IRQHandler(void)
     if (DL_UART_getPendingInterrupt(UART_0_INST) == DL_UART_IIDX_RX)
     {
         uart_data = DL_UART_Main_receiveData(UART_0_INST);  // Read the received data
-        uart0_send_char(uart_data);  // Echo the received data back (optional)
     }
 }
 
