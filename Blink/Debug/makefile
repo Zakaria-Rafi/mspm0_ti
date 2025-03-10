@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccs2002/ccs/tools/compiler/ti-cgt-armllvm_4.0.1.LTS
+CG_TOOL_ROOT := C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS
 
 GEN_OPTS__FLAG := @"./device.opt" 
 GEN_CMDS__FLAG := -Wl,-l"./device_linker.cmd" 
@@ -136,7 +136,7 @@ all: $(OBJS) $(GEN_CMDS)
 Blink.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"C:/ti/ccs2002/ccs/tools/compiler/ti-cgt-armllvm_4.0.1.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 -gdwarf-3 -Wl,-m"Blink.map" -Wl,-i"C:/ti/mspm0_sdk_2_03_00_07/source" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Blink" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Blink/Debug/syscfg" -Wl,-i"C:/ti/ccs2002/ccs/tools/compiler/ti-cgt-armllvm_4.0.1.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="Blink_linkInfo.xml" -Wl,--rom_model -o "Blink.out" $(ORDERED_OBJS)
+	"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 -gdwarf-3 -Wl,-m"Blink.map" -Wl,-i"C:/ti/mspm0_sdk_2_03_00_07/source" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Blink" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Blink/Debug/syscfg" -Wl,-i"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="Blink_linkInfo.xml" -Wl,--rom_model -o "Blink.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
