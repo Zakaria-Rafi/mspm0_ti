@@ -9,6 +9,8 @@
 /**
  * Import the modules used in this configuration.
  */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
 const SPI    = scripting.addModule("/ti/driverlib/SPI", {}, false);
 const SPI1   = SPI.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
@@ -16,13 +18,23 @@ const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 /**
  * Write custom configuration values to the imported modules.
  */
+GPIO1.$name                              = "LED1";
+GPIO1.associatedPins[0].$name            = "PIN_1";
+GPIO1.associatedPins[0].internalResistor = "PULL_DOWN";
+GPIO1.associatedPins[0].pin.$assign      = "PA0";
+
+const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
 SPI1.$name                              = "SPI";
-SPI1.targetBitRate                      = 16000000;
+SPI1.targetBitRate                      = 500000;
 SPI1.peripheral.$assign                 = "SPI0";
 SPI1.peripheral.sclkPin.$assign         = "PA11";
-SPI1.peripheral.mosiPin.$assign         = "PA14";
+SPI1.peripheral.mosiPin.$assign         = "PA9";
 SPI1.peripheral.misoPin.$assign         = "PA10";
-SPI1.peripheral.cs0Pin.$assign          = "PA2";
+SPI1.peripheral.cs0Pin.$assign          = "PA8";
 SPI1.sclkPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric0";
 SPI1.sclkPinConfig.direction            = scripting.forceWrite("OUTPUT");
 SPI1.sclkPinConfig.onlyInternalResistor = scripting.forceWrite(false);
@@ -40,11 +52,6 @@ SPI1.cs0PinConfig.direction             = scripting.forceWrite("OUTPUT");
 SPI1.cs0PinConfig.hideOutputInversion   = scripting.forceWrite(false);
 SPI1.cs0PinConfig.onlyInternalResistor  = scripting.forceWrite(false);
 SPI1.cs0PinConfig.passedPeripheralType  = scripting.forceWrite("Digital");
-
-const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
-Board.peripheral.$assign          = "DEBUGSS";
-Board.peripheral.swclkPin.$assign = "PA20";
-Board.peripheral.swdioPin.$assign = "PA19";
 
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.peripheral.$assign    = "SYSCTL";

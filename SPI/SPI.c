@@ -30,25 +30,33 @@ void SPI_ReceiveBuffer(uint16_t *buffer, uint16_t length) {
         buffer[i] = SPI_Receive();
     }
 }
+void delay_ms(unsigned int ms) 
+{
+    volatile unsigned int i, j;
+    for (i = 0; i < ms; i++) {         // Loop for each millisecond
+        for (j = 0; j < 8000; j++) {   // Loop to create delay
+            __asm__("nop");             // No Operation (NOP), which takes one cycle
+        }
+    }
+}
 
 int main(void) {
     SYSCFG_DL_init(); // Initialize system peripherals
-
-    uint16_t sendData = 0xA5A5;  // Example data to send
+    uint16_t sendData = 0x4D4F;  // Example data to send
     uint16_t receivedData;
 
-    // Example: Send and receive a single byte
-    receivedData = SPI_Transfer(sendData);
 
-    // Example: Send multiple bytes
-    uint16_t txBuffer[3] = {0x1234, 0x5678, 0x9ABC};
-    SPI_SendBuffer(txBuffer, 3);
-
-    // Example: Receive multiple bytes
-    uint16_t rxBuffer[3];
-    SPI_ReceiveBuffer(rxBuffer, 3);
 
     while (1) {
-        // Main loop
+    // Turn both LEDs ON
+    DL_GPIO_clearPins(LED1_PORT, LED1_PIN_1_PIN);
+
+    delay_ms(100); // 1-second delay
+    SPI_Transfer(sendData);
+
+    DL_GPIO_setPins(LED1_PORT, LED1_PIN_1_PIN);
+
+    delay_ms(100); // 1-second delay
+
     }
 }

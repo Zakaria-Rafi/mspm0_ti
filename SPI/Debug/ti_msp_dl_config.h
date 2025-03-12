@@ -82,9 +82,9 @@ extern "C" {
 #define SPI_INST_IRQHandler                                     SPI0_IRQHandler
 #define SPI_INST_INT_IRQN                                         SPI0_INT_IRQn
 #define GPIO_SPI_PICO_PORT                                                GPIOA
-#define GPIO_SPI_PICO_PIN                                        DL_GPIO_PIN_14
-#define GPIO_SPI_IOMUX_PICO                                     (IOMUX_PINCM36)
-#define GPIO_SPI_IOMUX_PICO_FUNC                     IOMUX_PINCM36_PF_SPI0_PICO
+#define GPIO_SPI_PICO_PIN                                         DL_GPIO_PIN_9
+#define GPIO_SPI_IOMUX_PICO                                     (IOMUX_PINCM20)
+#define GPIO_SPI_IOMUX_PICO_FUNC                     IOMUX_PINCM20_PF_SPI0_PICO
 #define GPIO_SPI_POCI_PORT                                                GPIOA
 #define GPIO_SPI_POCI_PIN                                        DL_GPIO_PIN_10
 #define GPIO_SPI_IOMUX_POCI                                     (IOMUX_PINCM21)
@@ -95,9 +95,18 @@ extern "C" {
 #define GPIO_SPI_IOMUX_SCLK                                     (IOMUX_PINCM22)
 #define GPIO_SPI_IOMUX_SCLK_FUNC                     IOMUX_PINCM22_PF_SPI0_SCLK
 #define GPIO_SPI_CS0_PORT                                                 GPIOA
-#define GPIO_SPI_CS0_PIN                                          DL_GPIO_PIN_2
-#define GPIO_SPI_IOMUX_CS0                                       (IOMUX_PINCM7)
-#define GPIO_SPI_IOMUX_CS0_FUNC                        IOMUX_PINCM7_PF_SPI0_CS0
+#define GPIO_SPI_CS0_PIN                                          DL_GPIO_PIN_8
+#define GPIO_SPI_IOMUX_CS0                                      (IOMUX_PINCM19)
+#define GPIO_SPI_IOMUX_CS0_FUNC                       IOMUX_PINCM19_PF_SPI0_CS0
+
+
+
+/* Port definition for Pin Group LED1 */
+#define LED1_PORT                                                        (GPIOA)
+
+/* Defines for PIN_1: GPIOA.0 with pinCMx 1 on package pin 1 */
+#define LED1_PIN_1_PIN                                           (DL_GPIO_PIN_0)
+#define LED1_PIN_1_IOMUX                                          (IOMUX_PINCM1)
 
 /* clang-format on */
 
@@ -106,6 +115,7 @@ void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
 void SYSCFG_DL_SPI_init(void);
+
 
 bool SYSCFG_DL_saveConfiguration(void);
 bool SYSCFG_DL_restoreConfiguration(void);

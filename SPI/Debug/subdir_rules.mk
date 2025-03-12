@@ -24,6 +24,7 @@ device.opt: build-1360876513
 device.cmd.genlibs: build-1360876513
 ti_msp_dl_config.c: build-1360876513
 ti_msp_dl_config.h: build-1360876513
+Event.dot: build-1360876513
 
 %.o: ./%.c $(GEN_OPTS) | $(GEN_FILES) $(GEN_MISC_FILES)
 	@echo 'Building file: "$<"'

@@ -102,6 +102,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
     DL_GPIO_initPeripheralOutputFunction(
         GPIO_SPI_IOMUX_CS0, GPIO_SPI_IOMUX_CS0_FUNC);
 
+    DL_GPIO_initDigitalOutputFeatures(LED1_PIN_1_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_DRIVE_STRENGTH_LOW, DL_GPIO_HIZ_DISABLE);
+
+    DL_GPIO_clearPins(LED1_PORT, LED1_PIN_1_PIN);
+    DL_GPIO_enableOutput(LED1_PORT, LED1_PIN_1_PIN);
+
 }
 
 
@@ -144,9 +151,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_SPI_init(void) {
     /*
      * Set the bit rate clock divider to generate the serial output clock
      *     outputBitRate = (spiInputClock) / ((1 + SCR) * 2)
-     *     16000000 = (32000000)/((1 + 0) * 2)
+     *     500000 = (32000000)/((1 + 31) * 2)
      */
-    DL_SPI_setBitRateSerialClockDivider(SPI_INST, 0);
+    DL_SPI_setBitRateSerialClockDivider(SPI_INST, 31);
     /* Set RX and TX FIFO threshold levels */
     DL_SPI_setFIFOThreshold(SPI_INST, DL_SPI_RX_FIFO_LEVEL_1_2_FULL, DL_SPI_TX_FIFO_LEVEL_1_2_EMPTY);
 
