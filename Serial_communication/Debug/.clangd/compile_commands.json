@@ -8,10 +8,5 @@
       "directory" : "C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Serial_communication/Debug",
       "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Serial_communication\" -I\"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Serial_communication/Debug\" -I\"C:/ti/mspm0_sdk_2_04_00_06/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_2_04_00_06/source\" -isystem\"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/include/c++/v1\" -isystem\"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/lib/clang/18/include\" -isystem\"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/include/c\"",
       "file"      : "C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Serial_communication/Serial.c"
-   },
-   {
-      "directory" : "C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Serial_communication/Debug",
-      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Serial_communication\" -I\"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Serial_communication/Debug\" -I\"C:/ti/mspm0_sdk_2_04_00_06/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_2_04_00_06/source\" -isystem\"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/include/c++/v1\" -isystem\"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/lib/clang/18/include\" -isystem\"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/include/c\"",
-      "file"      : "C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Serial_communication/arduino/mspm0_uart/mspm0_uart.ino"
    }
 ]

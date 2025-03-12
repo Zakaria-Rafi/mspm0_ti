@@ -9,6 +9,24 @@
                 "name": "Serial_communication",
                 "resourceId": "/Serial_communication"
             }
+        },
+        {
+            "name": "SPI",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "SPI",
+                "resourceId": "/SPI"
+            }
+        },
+        {
+            "name": "Blink",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "Blink",
+                "resourceId": "/Blink"
+            }
         }
     ]
 }
