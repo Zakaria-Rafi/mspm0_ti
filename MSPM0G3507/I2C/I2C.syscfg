@@ -10,6 +10,9 @@
  * Import the modules used in this configuration.
  */
 const CRC    = scripting.addModule("/ti/driverlib/CRC");
+const EVENT  = scripting.addModule("/ti/driverlib/EVENT");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
 const I2C    = scripting.addModule("/ti/driverlib/I2C", {}, false);
 const I2C1   = I2C.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
@@ -25,9 +28,18 @@ Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";
 Board.peripheral.swdioPin.$assign = "PA19";
 
+GPIO1.$name                              = "LED1";
+GPIO1.associatedPins[0].$name            = "PIN_1";
+GPIO1.associatedPins[0].internalResistor = "PULL_DOWN";
+
 I2C1.$name                     = "I2C_0";
 I2C1.basicEnableController     = true;
-I2C1.intController             = ["NACK","RXFIFO_TRIGGER","RX_DONE","TX_DONE"];
+I2C1.basicControllerBusSpeed   = 400000;
+I2C1.advControllerTXFIFOTRIG   = "BYTES_1";
+I2C1.intController             = ["ARBITRATION_LOST","NACK","RXFIFO_TRIGGER","RX_DONE","TX_DONE"];
+I2C1.peripheral.$assign        = "I2C0";
+I2C1.peripheral.sdaPin.$assign = "PA10";
+I2C1.peripheral.sclPin.$assign = "PA11";
 I2C1.sdaPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric0";
 I2C1.sclPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";
 I2C1.sclPinConfig.enableConfig = true;
@@ -43,6 +55,4 @@ ProjectConfig.migrationCondition = true;
  * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
  * re-solve from scratch.
  */
-I2C1.peripheral.$suggestSolution        = "I2C1";
-I2C1.peripheral.sdaPin.$suggestSolution = "PA10";
-I2C1.peripheral.sclPin.$suggestSolution = "PA11";
+GPIO1.associatedPins[0].pin.$suggestSolution = "PA0";

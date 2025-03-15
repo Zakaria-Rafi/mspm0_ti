@@ -80,18 +80,27 @@ extern "C" {
 
 
 /* Defines for I2C_0 */
-#define I2C_0_INST                                                          I2C1
-#define I2C_0_INST_IRQHandler                                    I2C1_IRQHandler
-#define I2C_0_INST_INT_IRQN                                        I2C1_INT_IRQn
-#define I2C_0_BUS_SPEED_HZ                                                100000
+#define I2C_0_INST                                                          I2C0
+#define I2C_0_INST_IRQHandler                                    I2C0_IRQHandler
+#define I2C_0_INST_INT_IRQN                                        I2C0_INT_IRQn
+#define I2C_0_BUS_SPEED_HZ                                                400000
 #define GPIO_I2C_0_SDA_PORT                                                GPIOA
 #define GPIO_I2C_0_SDA_PIN                                        DL_GPIO_PIN_10
 #define GPIO_I2C_0_IOMUX_SDA                                     (IOMUX_PINCM21)
-#define GPIO_I2C_0_IOMUX_SDA_FUNC                      IOMUX_PINCM21_PF_I2C1_SDA
+#define GPIO_I2C_0_IOMUX_SDA_FUNC                      IOMUX_PINCM21_PF_I2C0_SDA
 #define GPIO_I2C_0_SCL_PORT                                                GPIOA
 #define GPIO_I2C_0_SCL_PIN                                        DL_GPIO_PIN_11
 #define GPIO_I2C_0_IOMUX_SCL                                     (IOMUX_PINCM22)
-#define GPIO_I2C_0_IOMUX_SCL_FUNC                      IOMUX_PINCM22_PF_I2C1_SCL
+#define GPIO_I2C_0_IOMUX_SCL_FUNC                      IOMUX_PINCM22_PF_I2C0_SCL
+
+
+
+/* Port definition for Pin Group LED1 */
+#define LED1_PORT                                                        (GPIOA)
+
+/* Defines for PIN_1: GPIOA.0 with pinCMx 1 on package pin 1 */
+#define LED1_PIN_1_PIN                                           (DL_GPIO_PIN_0)
+#define LED1_PIN_1_IOMUX                                          (IOMUX_PINCM1)
 
 
 /* Defines for CRC */
@@ -104,6 +113,7 @@ void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
 void SYSCFG_DL_I2C_0_init(void);
+
 void SYSCFG_DL_CRC_init(void);
 
 

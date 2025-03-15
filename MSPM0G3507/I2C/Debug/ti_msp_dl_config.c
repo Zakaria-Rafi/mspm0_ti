@@ -81,6 +81,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
     DL_GPIO_enableHiZ(GPIO_I2C_0_IOMUX_SDA);
     DL_GPIO_enableHiZ(GPIO_I2C_0_IOMUX_SCL);
 
+    DL_GPIO_initDigitalOutputFeatures(LED1_PIN_1_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_DRIVE_STRENGTH_LOW, DL_GPIO_HIZ_DISABLE);
+
+    DL_GPIO_clearPins(LED1_PORT, LED1_PIN_1_PIN);
+    DL_GPIO_enableOutput(LED1_PORT, LED1_PIN_1_PIN);
+
 }
 
 
@@ -115,14 +122,15 @@ SYSCONFIG_WEAK void SYSCFG_DL_I2C_0_init(void) {
 
     /* Configure Controller Mode */
     DL_I2C_resetControllerTransfer(I2C_0_INST);
-    /* Set frequency to 100000 Hz*/
-    DL_I2C_setTimerPeriod(I2C_0_INST, 31);
-    DL_I2C_setControllerTXFIFOThreshold(I2C_0_INST, DL_I2C_TX_FIFO_LEVEL_EMPTY);
+    /* Set frequency to 400000 Hz*/
+    DL_I2C_setTimerPeriod(I2C_0_INST, 7);
+    DL_I2C_setControllerTXFIFOThreshold(I2C_0_INST, DL_I2C_TX_FIFO_LEVEL_BYTES_1);
     DL_I2C_setControllerRXFIFOThreshold(I2C_0_INST, DL_I2C_RX_FIFO_LEVEL_BYTES_1);
     DL_I2C_enableControllerClockStretching(I2C_0_INST);
 
     /* Configure Interrupts */
     DL_I2C_enableInterrupt(I2C_0_INST,
+                           DL_I2C_INTERRUPT_CONTROLLER_ARBITRATION_LOST |
                            DL_I2C_INTERRUPT_CONTROLLER_NACK |
                            DL_I2C_INTERRUPT_CONTROLLER_RXFIFO_TRIGGER |
                            DL_I2C_INTERRUPT_CONTROLLER_RX_DONE |
