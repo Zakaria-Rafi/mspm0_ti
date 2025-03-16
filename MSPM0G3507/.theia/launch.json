@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "I2C",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "I2C",
+                "resourceId": "/I2C"
+            }
+        }
+    ]
+}
