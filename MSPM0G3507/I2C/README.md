@@ -56,24 +56,27 @@ Handles I2C interrupts and updates the transmission status accordingly:
 - **Connection Wires**  
 
 ## Configuration Images  
-LED PIN :
+## LED PIN :
 ![image](https://github.com/user-attachments/assets/5efb9ecc-8225-443b-9ae4-cc0f4ab2afe8)
-Enable Clock Tree on SYSCTL :
+## Enable Clock Tree on SYSCTL :
 ![image](https://github.com/user-attachments/assets/731df582-2e92-40be-9373-7d3e18616ff5)
-I2C Configuration :
+## I2C Configuration :
 Add I2C Pins also add Bus Speed:
+
 ![image](https://github.com/user-attachments/assets/9fcee8e3-2b10-4c2f-a808-931363493b6f)
-Add RX and TX FIFO <= 1 bytes
+## Add RX and TX FIFO <= 1 bytes
+
 ![image](https://github.com/user-attachments/assets/d389a6cb-8054-4bc9-838b-b5e2c234778a)
-Add Controller Interrupts:
+## Add Controller Interrupts:
+
 ![image](https://github.com/user-attachments/assets/e7a4f084-fb01-4749-88cc-2825bf73b547)
-Finally Choice Your PINs for I2C :
+
+## Finally Choice Your PINs for I2C :
+
 ![image](https://github.com/user-attachments/assets/8faa0861-eb43-479c-8b10-c7e6ec896f60)
-Enable EVENT to use Interruption:
+
+## Enable EVENT to use Interruption:
 ![image](https://github.com/user-attachments/assets/c79a5fee-7a74-4056-84c7-5c686ca2e43b)
-
-
-
 
 
 ## Expected Behavior  
