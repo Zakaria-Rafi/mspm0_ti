@@ -1,53 +1,30 @@
-#include <SPI.h>
+#include <Wire.h>
 
-// Pin definitions
-const int SS_PIN = 10;    // Default SS pin for most Arduinos
+#define I2C_SLAVE_ADDRESS 0x48  // Same as MSPM0G350x master
 
-// Variables to store received data
-volatile uint16_t receivedData = 0;
-volatile bool dataReceived = false;
+uint8_t receivedData[16];  // Buffer to store received data
 
 void setup() {
-  Serial.begin(115200);   // Initialize serial for debugging
-  Serial.println("Arduino SPI Slave Starting...");
-  
-  // Configure SPI in slave mode
-  pinMode(MISO, OUTPUT);  // Set MISO as OUTPUT (required for SPI slave)
-  pinMode(MOSI, INPUT);   // Set MOSI as INPUT
-  pinMode(SCK, INPUT);    // Set SCK as INPUT
-  pinMode(SS_PIN, INPUT); // SS as INPUT
-  
-  // Initialize SPI in slave mode
-  SPCR = (1 << SPE) | (1 << SPIE);  // Enable SPI and SPI interrupts
-  
-  Serial.println("SPI Slave Initialized - Waiting for data...");
-}
-
-// SPI interrupt routine
-ISR(SPI_STC_vect) {
-  // When the MSB is received, store it temporarily
-  static uint8_t highByte = 0;
-  static bool receivingHighByte = true;
-  
-  if (receivingHighByte) {
-    // First byte received (MSB of 16-bit value)
-    highByte = SPDR;
-    receivingHighByte = false;
-  } else {
-    // Second byte received (LSB of 16-bit value)
-    receivedData = (highByte << 8) | SPDR;
-    receivingHighByte = true;
-    dataReceived = true;
-  }
+    Wire.begin(I2C_SLAVE_ADDRESS);  // Set Arduino as I2C slave
+    Wire.onReceive(receiveEvent);   // Register receive callback
+    Serial.begin(115200);           // Debugging via Serial Monitor
 }
 
 void loop() {
-  // Check if new data has been received
-  if (dataReceived) {
-    Serial.print("Received 16-bit data: 0x");
-    Serial.println(receivedData, HEX);
+    delay(100);  // Just to avoid excessive CPU usage
+}
+
+// 📌 Callback: Runs when master sends data
+void receiveEvent(int bytes) {
+    int i = 0;
+    while (Wire.available() && i < 16) {
+        receivedData[i++] = Wire.read();  // Read each byte
+    }
     
-    // Reset flag
-    dataReceived = false;
-  }
+    Serial.print("Received: ");
+    for (int j = 0; j < i; j++) {
+        Serial.print(receivedData[j], HEX);
+        Serial.print(" ");
+    }
+    Serial.println();
 }
