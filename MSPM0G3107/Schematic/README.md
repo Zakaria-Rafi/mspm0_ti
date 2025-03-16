@@ -36,3 +36,5 @@ For flashing via **XDS110** (SWD interface), follow these steps:
 ## **Conclusion**
 Following these guidelines ensures reliable operation and successful flashing of the MSPM0 family microcontrollers, including **MSPM0G3507**. Proper capacitor placement, pull-up/pull-down resistors, and correct flashing method selection will help avoid common issues related to power instability and programming errors.
 
+## **Schematic Used with MSPM0G3107 20-Pin Version**
+![sch](https://github.com/user-attachments/assets/141a8315-8351-4bda-8af4-dbd19197685a)
