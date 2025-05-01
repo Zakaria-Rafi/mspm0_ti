@@ -136,7 +136,7 @@ all: $(OBJS) $(GEN_CMDS)
 Serial_communication.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 -gdwarf-3 -Wl,-m"Serial_communication.map" -Wl,-i"C:/ti/mspm0_sdk_2_04_00_06/source" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Serial_communication" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/Serial_communication/Debug/syscfg" -Wl,-i"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="Serial_communication_linkInfo.xml" -Wl,--rom_model -o "Serial_communication.out" $(ORDERED_OBJS)
+	"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 -gdwarf-3 -Wl,-m"Serial_communication.map" -Wl,-i"C:/ti/mspm0_sdk_2_04_00_06/source" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/MSPM0G3507/Serial_communication" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/MSPM0G3507/Serial_communication/Debug/syscfg" -Wl,-i"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="Serial_communication_linkInfo.xml" -Wl,--rom_model -o "Serial_communication.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 

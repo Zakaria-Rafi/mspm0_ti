@@ -1,0 +1,79 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "MSPM0G350X" --part "Default" --package "VQFN-32(RHB)" --product "mspm0_sdk@2.04.00.06"
+ * @v2CliArgs --device "MSPM0G3507" --package "VQFN-32(RHB)" --product "mspm0_sdk@2.04.00.06"
+ * @versions {"tool":"1.23.0+4000"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const MCAN   = scripting.addModule("/ti/driverlib/MCAN", {}, false);
+const MCAN1  = MCAN.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider5       = system.clockTree["PLL_CLK1_DIV"];
+divider5.divideValue = 4;
+
+const gate8  = system.clockTree["MFPCLKGATE"];
+gate8.enable = true;
+
+const multiplier2         = system.clockTree["PLL_QDIV"];
+multiplier2.multiplyValue = 5;
+
+const mux2       = system.clockTree["CANCLKMUX"];
+mux2.inputSelect = "CANCLKMUX_PLLCLK1_OUT";
+
+const mux10       = system.clockTree["MFPCLKMUX"];
+mux10.inputSelect = "MFPCLKMUX_HFCLK";
+
+MCAN1.$name                    = "MCAN0";
+MCAN1.desiredNomRate           = 250;
+MCAN1.wkupReqEnable            = true;
+MCAN1.emulationEnable          = true;
+MCAN1.autoWkupEnable           = true;
+MCAN1.tdcEnable                = true;
+MCAN1.desiredDataRate          = 2;
+MCAN1.lss                      = 0;
+MCAN1.flesa                    = 0;
+MCAN1.lse                      = 0;
+MCAN1.txStartAddr              = 0;
+MCAN1.txBufNum                 = 1;
+MCAN1.txEventFIFOWaterMark     = 0;
+MCAN1.txEventFIFOStartAddr     = 0;
+MCAN1.rxFIFO0startAddr         = 0;
+MCAN1.rxFIFO0size              = 0;
+MCAN1.rxFIFO0waterMark         = 0;
+MCAN1.rxFIFO1startAddr         = 0;
+MCAN1.rxFIFO1size              = 0;
+MCAN1.rxFIFO1waterMark         = 0;
+MCAN1.rxBufStartAddr           = 0;
+MCAN1.additionalCoreConfig     = true;
+MCAN1.anfe                     = "1";
+MCAN1.anfs                     = "1";
+MCAN1.rrfe                     = true;
+MCAN1.rrfs                     = true;
+MCAN1.overrideRetention        = true;
+MCAN1.brsEnable                = false;
+MCAN1.fdMode                   = false;
+MCAN1.peripheral.$assign       = "CANFD0";
+MCAN1.peripheral.rxPin.$assign = "PA13";
+MCAN1.peripheral.txPin.$assign = "PA12";
+MCAN1.txPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric0";
+MCAN1.rxPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";
+
+const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.validateClkStatus     = true;
+SYSCTL.clockTreeEn           = true;
+
+const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
+ProjectConfig.migrationCondition = true;

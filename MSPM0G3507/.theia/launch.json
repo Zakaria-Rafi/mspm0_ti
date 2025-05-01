@@ -9,6 +9,31 @@
                 "name": "I2C",
                 "resourceId": "/I2C"
             }
+        },
+        {
+            "name": "CAN_BUS",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "CAN_BUS",
+                "resourceId": "/CAN_BUS"
+            },
+            "debuggerSettings": {
+                "targetConfigs/MSPM0G3507.ccxml": {
+                    "Texas Instruments XDS110 USB Debug Probe/CORTEX_M0P": {
+                        "data": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\n<PropertyValues/>\n"
+                    }
+                }
+            }
+        },
+        {
+            "name": "Blink",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "Blink",
+                "resourceId": "/Blink"
+            }
         }
     ]
 }

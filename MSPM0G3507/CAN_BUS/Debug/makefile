@@ -10,7 +10,7 @@ GEN_OPTS__FLAG := @"./device.opt"
 GEN_CMDS__FLAG := -Wl,-l"./device_linker.cmd" 
 
 ORDERED_OBJS += \
-"./SPI.o" \
+"./CAN_BUS.o" \
 "./ti_msp_dl_config.o" \
 "./startup_mspm0g350x_ticlang.o" \
 $(GEN_CMDS__FLAG) \
@@ -122,29 +122,29 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-SPI.out 
+CAN_BUS.out 
 
 EXE_OUTPUTS__QUOTED += \
-"SPI.out" 
+"CAN_BUS.out" 
 
 
 # All Target
 all: $(OBJS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "SPI.out"
+	@$(MAKE) --no-print-directory -Onone "CAN_BUS.out"
 
 # Tool invocations
-SPI.out: $(OBJS) $(GEN_CMDS)
+CAN_BUS.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 -gdwarf-3 -Wl,-m"SPI.map" -Wl,-i"C:/ti/mspm0_sdk_2_04_00_06/source" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/MSPM0G3507/SPI" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/MSPM0G3507/SPI/Debug/syscfg" -Wl,-i"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="SPI_linkInfo.xml" -Wl,--rom_model -o "SPI.out" $(ORDERED_OBJS)
+	"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 -gdwarf-3 -Wl,-m"CAN_BUS.map" -Wl,-i"C:/ti/mspm0_sdk_2_04_00_06/source" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/MSPM0G3507/CAN_BUS" -Wl,-i"C:/Users/rafiz/OneDrive/Desktop/mspm0_ti/MSPM0G3507/CAN_BUS/Debug/syscfg" -Wl,-i"C:/ti/ccs2010/ccs/tools/compiler/ti-cgt-armllvm_4.0.2.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="CAN_BUS_linkInfo.xml" -Wl,--rom_model -o "CAN_BUS.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "SPI.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" 
-	-$(RM) "SPI.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" 
+	-$(RM) "CAN_BUS.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" 
+	-$(RM) "CAN_BUS.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
