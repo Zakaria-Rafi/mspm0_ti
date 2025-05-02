@@ -18,9 +18,15 @@ int main(void)
 
 void TIMER_0_INST_IRQHandler(void)
 {
+    static uint16_t counter = 0;
     switch (DL_TimerA_getPendingInterrupt(TIMER_0_INST)) {
         case DL_TIMERA_IIDX_REPEAT_COUNT:
-            DL_GPIO_togglePins(LED1_PORT, LED1_PIN1_PIN);
+            DL_TimerA_clearInterruptStatus(TIMER_0_INST, DL_TIMER_IIDX_REPEAT_COUNT);
+            counter++;
+            if (counter >= 250) {
+            counter = 0;
+             DL_GPIO_togglePins(LED1_PORT, LED1_PIN1_PIN);
+            }
             break;
         default:
             break;

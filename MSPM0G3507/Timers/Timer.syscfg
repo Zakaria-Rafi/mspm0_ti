@@ -36,9 +36,8 @@ TIMER1.$name               = "TIMER_0";
 TIMER1.enableRepeatCounter = true;
 TIMER1.interrupts          = ["REPC"];
 TIMER1.timerMode           = "PERIODIC_UP";
-TIMER1.repeatCounter       = 4;
-TIMER1.timerClkSrc         = "LFCLK";
-TIMER1.timerPeriod         = "500ms";
+TIMER1.repeatCounter       = 2;
+TIMER1.timerPeriod         = "0.5ms";
 TIMER1.peripheral.$assign  = "TIMA0";
 
 const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
