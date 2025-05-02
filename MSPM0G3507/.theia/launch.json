@@ -34,6 +34,24 @@
                 "name": "Blink",
                 "resourceId": "/Blink"
             }
+        },
+        {
+            "name": "Timer_SysTick",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "Timer_SysTick",
+                "resourceId": "/Timer_SysTick"
+            }
+        },
+        {
+            "name": "Timers",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "Timers",
+                "resourceId": "/Timers"
+            }
         }
     ]
 }
