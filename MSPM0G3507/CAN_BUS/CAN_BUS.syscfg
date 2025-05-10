@@ -9,9 +9,13 @@
 /**
  * Import the modules used in this configuration.
  */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
 const MCAN   = scripting.addModule("/ti/driverlib/MCAN", {}, false);
 const MCAN1  = MCAN.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
 
 /**
  * Write custom configuration values to the imported modules.
@@ -30,6 +34,14 @@ mux2.inputSelect = "CANCLKMUX_PLLCLK1_OUT";
 
 const mux10       = system.clockTree["MFPCLKMUX"];
 mux10.inputSelect = "MFPCLKMUX_HFCLK";
+
+GPIO1.$name                   = "LED1";
+GPIO1.associatedPins[0].$name = "PIN_1";
+
+const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
 
 MCAN1.$name                    = "MCAN0";
 MCAN1.desiredNomRate           = 250;
@@ -66,14 +78,24 @@ MCAN1.peripheral.txPin.$assign = "PA12";
 MCAN1.txPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric0";
 MCAN1.rxPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";
 
-const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
-Board.peripheral.$assign          = "DEBUGSS";
-Board.peripheral.swclkPin.$assign = "PA20";
-Board.peripheral.swdioPin.$assign = "PA19";
-
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.validateClkStatus     = true;
 SYSCTL.clockTreeEn           = true;
 
+TIMER1.$name               = "TIMER_0";
+TIMER1.enableRepeatCounter = true;
+TIMER1.repeatCounter       = 2;
+TIMER1.interrupts          = ["REPC"];
+TIMER1.timerMode           = "PERIODIC_UP";
+TIMER1.timerPeriod         = "1 ms";
+
 const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
 ProjectConfig.migrationCondition = true;
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+GPIO1.associatedPins[0].pin.$suggestSolution = "PA0";
+TIMER1.peripheral.$suggestSolution           = "TIMA0";

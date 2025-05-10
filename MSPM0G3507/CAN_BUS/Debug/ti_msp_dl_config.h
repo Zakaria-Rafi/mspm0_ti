@@ -78,6 +78,24 @@ extern "C" {
 
 
 
+/* Defines for TIMER_0 */
+#define TIMER_0_INST                                                     (TIMA0)
+#define TIMER_0_INST_IRQHandler                                 TIMA0_IRQHandler
+#define TIMER_0_INST_INT_IRQN                                   (TIMA0_INT_IRQn)
+#define TIMER_0_INST_LOAD_VALUE                                         (31999U)
+#define TIMER_0_REPEAT_COUNT_2                                               (1)
+
+
+
+
+/* Port definition for Pin Group LED1 */
+#define LED1_PORT                                                        (GPIOA)
+
+/* Defines for PIN_1: GPIOA.0 with pinCMx 1 on package pin 1 */
+#define LED1_PIN_1_PIN                                           (DL_GPIO_PIN_0)
+#define LED1_PIN_1_IOMUX                                          (IOMUX_PINCM1)
+
+
 /* Defines for MCAN0 */
 #define MCAN0_INST                                                        CANFD0
 #define GPIO_MCAN0_CAN_TX_PORT                                             GPIOA
@@ -116,6 +134,8 @@ void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
 void SYSCFG_DL_SYSCTL_CLK_init(void);
+void SYSCFG_DL_TIMER_0_init(void);
+
 void SYSCFG_DL_MCAN0_init(void);
 
 bool SYSCFG_DL_saveConfiguration(void);
