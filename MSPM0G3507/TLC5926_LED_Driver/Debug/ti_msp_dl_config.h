@@ -78,29 +78,6 @@ extern "C" {
 
 
 
-/* Defines for PWM_1 */
-#define PWM_1_INST                                                         TIMA0
-#define PWM_1_INST_IRQHandler                                   TIMA0_IRQHandler
-#define PWM_1_INST_INT_IRQN                                     (TIMA0_INT_IRQn)
-#define PWM_1_INST_CLK_FREQ                                               200000
-/* GPIO defines for channel 0 */
-#define GPIO_PWM_1_C0_PORT                                                 GPIOA
-#define GPIO_PWM_1_C0_PIN                                          DL_GPIO_PIN_0
-#define GPIO_PWM_1_C0_IOMUX                                       (IOMUX_PINCM1)
-#define GPIO_PWM_1_C0_IOMUX_FUNC                      IOMUX_PINCM1_PF_TIMA0_CCP0
-#define GPIO_PWM_1_C0_IDX                                    DL_TIMER_CC_0_INDEX
-
-
-
-/* Defines for TIMER_0 */
-#define TIMER_0_INST                                                     (TIMA1)
-#define TIMER_0_INST_IRQHandler                                 TIMA1_IRQHandler
-#define TIMER_0_INST_INT_IRQN                                   (TIMA1_INT_IRQn)
-#define TIMER_0_INST_LOAD_VALUE                                            (31U)
-#define TIMER_0_REPEAT_COUNT_2                                               (1)
-
-
-
 
 /* Port definition for Pin Group GPIO_SDI */
 #define GPIO_SDI_PORT                                                    (GPIOA)
@@ -129,9 +106,9 @@ extern "C" {
 /* Port definition for Pin Group GPIO_OE */
 #define GPIO_OE_PORT                                                     (GPIOA)
 
-/* Defines for PIN_OE: GPIOA.10 with pinCMx 21 on package pin 14 */
-#define GPIO_OE_PIN_OE_PIN                                      (DL_GPIO_PIN_10)
-#define GPIO_OE_PIN_OE_IOMUX                                     (IOMUX_PINCM21)
+/* Defines for PIN_OE: GPIOA.9 with pinCMx 20 on package pin 13 */
+#define GPIO_OE_PIN_OE_PIN                                       (DL_GPIO_PIN_9)
+#define GPIO_OE_PIN_OE_IOMUX                                     (IOMUX_PINCM20)
 
 /* clang-format on */
 
@@ -139,12 +116,8 @@ void SYSCFG_DL_init(void);
 void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
-void SYSCFG_DL_PWM_1_init(void);
-void SYSCFG_DL_TIMER_0_init(void);
 
 
-bool SYSCFG_DL_saveConfiguration(void);
-bool SYSCFG_DL_restoreConfiguration(void);
 
 #ifdef __cplusplus
 }

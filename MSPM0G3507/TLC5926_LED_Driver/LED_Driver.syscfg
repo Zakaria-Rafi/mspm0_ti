@@ -15,11 +15,7 @@ const GPIO2  = GPIO.addInstance();
 const GPIO3  = GPIO.addInstance();
 const GPIO4  = GPIO.addInstance();
 const GPIO5  = GPIO.addInstance();
-const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
-const PWM1   = PWM.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
-const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
-const TIMER1 = TIMER.addInstance();
 
 /**
  * Write custom configuration values to the imported modules.
@@ -46,42 +42,12 @@ GPIO4.associatedPins[0].$name       = "PIN_SDO";
 GPIO4.associatedPins[0].direction   = "INPUT";
 GPIO4.associatedPins[0].pin.$assign = "PA8";
 
-GPIO5.$name                                       = "GPIO_OE";
-GPIO5.associatedPins[0].$name                     = "PIN_OE";
-GPIO5.associatedPins[0].pin.$assignAllowConflicts = "PA10";
-
-PWM1.$name                              = "PWM_1";
-PWM1.clockDivider                       = 8;
-PWM1.clockPrescale                      = 20;
-PWM1.timerCount                         = 2000;
-PWM1.ccIndex                            = [0];
-PWM1.interrupts                         = ["LOAD_EVENT"];
-PWM1.PWM_CHANNEL_0.$name                = "ti_driverlib_pwm_PWMTimerCC0";
-PWM1.PWM_CHANNEL_0.dutyCycle            = 10;
-PWM1.ccp0PinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric0";
-PWM1.ccp0PinConfig.direction            = scripting.forceWrite("OUTPUT");
-PWM1.ccp0PinConfig.hideOutputInversion  = scripting.forceWrite(false);
-PWM1.ccp0PinConfig.onlyInternalResistor = scripting.forceWrite(false);
-PWM1.ccp0PinConfig.passedPeripheralType = scripting.forceWrite("Digital");
-PWM1.peripheral.ccp0Pin.$assign         = "PA0";
+GPIO5.$name                         = "GPIO_OE";
+GPIO5.associatedPins[0].$name       = "PIN_OE";
+GPIO5.associatedPins[0].pin.$assign = "PA9";
 
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn           = true;
 
-TIMER1.$name               = "TIMER_0";
-TIMER1.enableRepeatCounter = true;
-TIMER1.interrupts          = ["REPC"];
-TIMER1.timerMode           = "PERIODIC_UP";
-TIMER1.repeatCounter       = 2;
-TIMER1.timerPeriod         = "0.001ms";
-
 const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
 ProjectConfig.migrationCondition = true;
-
-/**
- * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
- * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
- * re-solve from scratch.
- */
-PWM1.peripheral.$suggestSolution   = "TIMA0";
-TIMER1.peripheral.$suggestSolution = "TIMA1";
