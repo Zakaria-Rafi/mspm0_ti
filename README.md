@@ -51,10 +51,10 @@ Our ultimate goal is to ensure robust **CAN Bus** communication support, configu
 | **I2C**                  | ✅ Done        | Verified communication with Arduino            |
 | **SPI**                  | ✅ Done        | Verified communication with Arduino            |
 | **UART (Serial Comm)**  | ✅ Done        | Serial tested via Arduino and PC terminal      |
-| Timers/PWM              | ⏳ Planned     | For pulse generation and timing                |
-| ADC/DAC                 | ⏳ Planned     | Analog input and output                        |
+| Timers/PWM              | ✅ Done     | For pulse generation and timing                |
+| ADC/DAC                 | ✅ Done     | Analog input and output                        |
 | Interrupts              | ⏳ Planned     | External pins and peripheral-triggered         |
-| CAN Bus (INT/EXT Clock) | ⏳ Final Goal | Robust, clock-independent communication driver |
+| CAN Bus (INT/EXT Clock) | ✅ Done| Robust, clock-independent communication driver |
 
 ---
 
