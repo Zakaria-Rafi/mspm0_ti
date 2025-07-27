@@ -78,6 +78,20 @@ extern "C" {
 
 
 
+/* Defines for PWM_1 */
+#define PWM_1_INST                                                         TIMA1
+#define PWM_1_INST_IRQHandler                                   TIMA1_IRQHandler
+#define PWM_1_INST_INT_IRQN                                     (TIMA1_INT_IRQn)
+#define PWM_1_INST_CLK_FREQ                                               200000
+/* GPIO defines for channel 0 */
+#define GPIO_PWM_1_C0_PORT                                                 GPIOA
+#define GPIO_PWM_1_C0_PIN                                         DL_GPIO_PIN_10
+#define GPIO_PWM_1_C0_IOMUX                                      (IOMUX_PINCM21)
+#define GPIO_PWM_1_C0_IOMUX_FUNC                     IOMUX_PINCM21_PF_TIMA1_CCP0
+#define GPIO_PWM_1_C0_IDX                                    DL_TIMER_CC_0_INDEX
+
+
+
 
 /* Port definition for Pin Group GPIO_SDI */
 #define GPIO_SDI_PORT                                                    (GPIOA)
@@ -116,8 +130,11 @@ void SYSCFG_DL_init(void);
 void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
+void SYSCFG_DL_PWM_1_init(void);
 
 
+bool SYSCFG_DL_saveConfiguration(void);
+bool SYSCFG_DL_restoreConfiguration(void);
 
 #ifdef __cplusplus
 }

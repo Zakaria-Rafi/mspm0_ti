@@ -11,6 +11,8 @@
  */
 const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1         = GPIO.addInstance();
+const PWM           = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1          = PWM.addInstance();
 const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
 const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 
@@ -26,7 +28,13 @@ Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";
 Board.peripheral.swdioPin.$assign = "PA19";
 
-SYSCTL.peripheral.$assign = "SYSCTL";
+PWM1.$name                      = "PWM_0";
+PWM1.ccIndex                    = [0];
+PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.ccp0PinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric0";
+PWM1.peripheral.ccp0Pin.$assign = "PA10";
+
+SYSCTL.clockTreeEn = true;
 
 ProjectConfig.migrationCondition = true;
 
@@ -36,3 +44,4 @@ ProjectConfig.migrationCondition = true;
  * re-solve from scratch.
  */
 GPIO1.associatedPins[0].pin.$suggestSolution = "PA26";
+PWM1.peripheral.$suggestSolution             = "TIMA1";

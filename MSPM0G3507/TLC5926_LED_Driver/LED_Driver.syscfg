@@ -15,6 +15,8 @@ const GPIO2  = GPIO.addInstance();
 const GPIO3  = GPIO.addInstance();
 const GPIO4  = GPIO.addInstance();
 const GPIO5  = GPIO.addInstance();
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
 /**
@@ -45,6 +47,24 @@ GPIO4.associatedPins[0].pin.$assign = "PA8";
 GPIO5.$name                         = "GPIO_OE";
 GPIO5.associatedPins[0].$name       = "PIN_OE";
 GPIO5.associatedPins[0].pin.$assign = "PA9";
+
+PWM1.clockDivider                       = 8;
+PWM1.clockPrescale                      = 20;
+PWM1.timerCount                         = 2000;
+PWM1.timerStartTimer                    = true;
+PWM1.interrupts                         = ["LOAD_EVENT"];
+PWM1.ccIndex                            = [0];
+PWM1.$name                              = "PWM_1";
+PWM1.PWM_CHANNEL_0.$name                = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.ccValue              = 1800;
+PWM1.PWM_CHANNEL_0.dutyCycle            = 10;
+PWM1.ccp0PinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric0";
+PWM1.ccp0PinConfig.direction            = scripting.forceWrite("OUTPUT");
+PWM1.ccp0PinConfig.hideOutputInversion  = scripting.forceWrite(false);
+PWM1.ccp0PinConfig.onlyInternalResistor = scripting.forceWrite(false);
+PWM1.ccp0PinConfig.passedPeripheralType = scripting.forceWrite("Digital");
+PWM1.peripheral.$assign                 = "TIMA1";
+PWM1.peripheral.ccp0Pin.$assign         = "PA10";
 
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn           = true;
