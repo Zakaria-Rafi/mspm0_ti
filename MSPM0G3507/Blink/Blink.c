@@ -1,15 +1,11 @@
 #include "ti/driverlib/dl_gpio.h"
 #include "ti_msp_dl_config.h"
-
+// i am using internal clock of 32Mhz
 void delay_ms(unsigned int ms) {
-  volatile unsigned int i, j;
-  for (i = 0; i < ms; i++) {
-    for (j = 0; j < 8000; j++) {
-      __asm__("nop");
-    }
+  for (unsigned int i = 0; i < ms * 32000; i++) {
+    __NOP();
   }
 }
-
 int main(void) {
   SYSCFG_DL_init();
 
