@@ -32,14 +32,10 @@ int main(void)
 }
 
 // Custom delay function (using software loop)
-void delay_ms(unsigned int ms) 
-{
-    volatile unsigned int i, j;
-    for (i = 0; i < ms; i++) {         // Loop for each millisecond
-        for (j = 0; j < 8000; j++) {   // Loop to create delay
-            __asm__("nop");             // No Operation (NOP), which takes one cycle
-        }
-    }
+void delay_ms(unsigned int ms) {
+  for (unsigned int i = 0; i < ms * 32000; i++) {
+    __NOP();
+  }
 }
 
 // Send a single character via UART

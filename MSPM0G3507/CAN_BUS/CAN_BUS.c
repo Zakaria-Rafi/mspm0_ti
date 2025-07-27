@@ -1,3 +1,4 @@
+//this code only send CAN frames i need to done for reciver its same way !
 #include "ti_msp_dl_config.h"
 // Using Timer as delay
 volatile bool error = false;
@@ -6,6 +7,7 @@ DL_MCAN_TxBufElement txMsg;
 
 /**
  * Delay in milliseconds using TimerA configured to tick every 1ms.
+ * Better using TimerA as tick when it come into CAN BUS
  */
 void delay_ms(uint32_t ms)
 {

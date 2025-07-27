@@ -40,7 +40,7 @@ int main(void)
     DL_SYSCTL_enableSleepOnExit();
 
     while (1) {
-        __WFI();
+        __WFI();//Better Power Managment
     }
 }
 int counter = 0;
